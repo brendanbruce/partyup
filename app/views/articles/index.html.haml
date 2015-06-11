@@ -1,0 +1,17 @@
+%h1 Listing Articles
+
+%table
+  %tr
+    %th Title
+    %th Text
+
+  - @articles.each do |article|
+    %tr
+      %td
+        = link_to article.title, article
+      %td
+        = article.text
+      %td
+        = link_to 'Edit', edit_article_path(article)
+      %td
+        = link_to 'Delete', article_path(article), method: :delete, data: { confirm: 'Are you sure?' }
