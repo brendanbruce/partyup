@@ -1,0 +1,9 @@
+%main
+  %h1 Events
+  - @events.each do |event|
+    .event-info
+      .event-info__thumbnail
+      .event-info__title
+        = link_to event.title, event
+        .event-info__date
+          = event.date
