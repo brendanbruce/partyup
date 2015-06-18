@@ -1,7 +1,28 @@
-%h2 Hello
+%main
+  .week
+    .week__item Monday
+    .week__item Tuesday
+    .week__item Wednesday
+    .week__item Thursday
+    .week__item Friday
+    .week__item Saturday
+    .week__item Sunday
 
-%ul
-  %li
-    = link_to 'Articles', controller: 'articles'
-  %li
-    = link_to 'New Article', new_article_path
+  .container
+    %h2
+      Weekly Events
+    %ul.listing
+      - @events.each do |event|
+        .event-info
+          .event-info__thumbnail
+          .event-info__title
+            = link_to event.title, event
+            .event-info__date
+              = event.date
+
+  .container
+    %div
+      %li
+        = link_to 'Articles', controller: 'articles'
+      %li
+        = link_to 'New Article', new_article_path

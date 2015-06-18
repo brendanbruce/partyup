@@ -10,5 +10,7 @@
     = csrf_meta_tags
   %body{:class => body_class}
     = render "flashes"
+    = render "layouts/navigation"
     = yield
+    = render "layouts/footer"
     = render "javascript"
