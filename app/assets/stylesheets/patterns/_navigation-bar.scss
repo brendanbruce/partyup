@@ -1,0 +1,28 @@
+.navigation-bar {
+  @include clearfix();
+  background-color: $off-white;
+  border-bottom: 1px solid $light-gray;
+}
+
+.navigation-bar__nav {
+  @include outer-container();
+}
+
+.navigation-bar__nav__logo {
+  float: left;
+  margin: $base-margin-medium auto;
+}
+
+.navigation-bar__nav__sections {
+  float: right;
+  margin: $base-margin-medium auto;
+
+  li {
+    float: left;
+    margin-right: $base-margin-medium;
+  }
+
+  li:last-child {
+    margin-right: 0;
+  }
+}

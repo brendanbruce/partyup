@@ -15,11 +15,16 @@ $base-spacing: $base-line-height * 1em;
 $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
 
+// Spacing Units
+$base-margin: 1em;
+$base-margin-medium: $base-margin * 1.25;
+
 // Colors
 $blue: #477dca;
 $dark-gray: #333;
 $medium-gray: #999;
-$light-gray: #ddd;
+$light-gray: #eee;
+$off-white: #fdfdfd;
 
 // Font Colors
 $base-background-color: #fff;

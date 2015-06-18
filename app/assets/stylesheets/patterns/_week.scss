@@ -1,0 +1,14 @@
+.week {
+  @include align-items(stretch);
+  @include display(flex);
+  @include flex-direction(row);
+  @include justify-content(space-between);
+  @include outer-container();
+  margin: 3em auto;
+}
+
+.week__item {
+  @include flex(0 1 auto);
+  @include pad($base-margin-medium);
+  background-color: $light-gray;
+}
