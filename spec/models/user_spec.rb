@@ -1,5 +1,13 @@
-require 'rails_helper'
+require "test_helper"
 
-RSpec.describe User, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe User do
+  before :each do
+    @user = User.new(name: "Testy Test", email: "test@example.com")
+  end
+
+  describe "#new" do
+    it "takes two parameters and returns a user" do
+      @user.should be_an_instance_of User
+    end
+  end
 end
