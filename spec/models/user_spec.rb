@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe User do
   before :each do
-    @user = User.new(name: "Testy Test", email: "test@example.com")
+    @user = User.new(name: "Testy Test", email: "test@example.com", password: "fooobarr", password_confirmation: "fooobarr")
   end
 
   describe "#new" do
@@ -54,6 +54,16 @@ describe User do
       duplicate_user.email = @user.email.upcase
       @user.save
       expect(duplicate_user).to_not be_valid
+    end
+
+    it "should have a non blank password" do
+      @user.password = @user.password_confirmation = " " * 8
+      expect(@user).to_not be_valid
+    end
+
+    it "should have a non blank password" do
+      @user.password = @user.password_confirmation = "a" * 7
+      expect(@user).to_not be_valid
     end
   end
 end
