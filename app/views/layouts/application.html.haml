@@ -14,3 +14,5 @@
     = yield
     = render "layouts/footer"
     = render "javascript"
+    .debug-box
+      = debug(params) if Rails.env.development?

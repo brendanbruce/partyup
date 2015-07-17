@@ -1,0 +1,11 @@
+%main
+  .outer-container
+    .aside
+      .user-profile
+        .user-profile__image
+          = gravatar_for(@user)
+        .user-profile__info
+          %h1
+            = @user.name
+          %h3
+            = @user.email
