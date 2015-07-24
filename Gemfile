@@ -46,7 +46,7 @@ group :development, :test do
 end
 
 group :test do
-  gem "capybara-webkit", ">= 1.2.0"
+  gem "capybara-webkit", ">= 1.5.2"
   gem "database_cleaner"
   gem "formulaic"
   gem "launchy"
