@@ -1,16 +1,67 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "User signs up for a new account" do
-  scenario "they sign up with invalid information" do
-    visit "users/signup"
+  scenario "they sign up with invalid email" do
+    visit signup_path
 
-    fill_in "name", with: "Brendan"
-    fill_in "email", with: "bb@b"
-    fill_in "password", with: "buddybuddy"
-    fill_in "password_confirmation", with: "buddybuddy"
+    fill_in "user_name", with: "Brendan"
+    fill_in "user_email", with: "bb@b"
+    fill_in "user_password", with: "buddybuddy"
+    fill_in "user_password_confirmation", with: "buddybuddy"
 
     click_button "Create my Account"
 
-    expect(page).to have_css "error_explanation"
+    within(:css, "ul.error__list") do
+      expect(page).to have_content "Email is invalid"
+    end
+  end
+
+  scenario "they sign up with invalid password" do
+    visit signup_path
+
+    fill_in "user_name", with: "Brendan"
+    fill_in "user_email", with: "brendan@skilledup.com"
+    fill_in "user_password", with: "buddy"
+    fill_in "user_password_confirmation", with: "buddy"
+
+    click_button "Create my Account"
+
+    within(:css, "ul.error__list") do
+      expect(page).to have_content "Password is too short (minimum is 8 characters)"
+    end
+  end
+
+  scenario "they sign up with unmatched password and password confirmation" do
+    visit signup_path
+
+    fill_in "user_name", with: "Brendan"
+    fill_in "user_email", with: "brendan@skilledup.com"
+    fill_in "user_password", with: "buddybuddy"
+    fill_in "user_password_confirmation", with: "buddyskater"
+
+    click_button "Create my Account"
+
+    within(:css, "ul.error__list") do
+      expect(page).to have_content "Password confirmation doesn't match Password"
+    end
+  end
+
+  scenario "they sign up with unmatched password and password confirmation and visit homepage" do
+    visit signup_path
+
+    fill_in "user_name", with: "Brendan"
+    fill_in "user_email", with: "brendan@skilledup.com"
+    fill_in "user_password", with: "buddybuddy"
+    fill_in "user_password_confirmation", with: "buddyskater"
+
+    click_button "Create my Account"
+
+    within(:css, "ul.error__list") do
+      expect(page).to have_content "Password confirmation doesn't match Password"
+    end
+
+    click_link "Home"
+
+    expect(page).to_not have_content "Password confirmation doesn't match Password"
   end
 end
