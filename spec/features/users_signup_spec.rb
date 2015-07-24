@@ -1,11 +1,15 @@
 require "rails_helper"
 
+def login_with_email(email: "brendan@skilledup.com")
+  fill_in "user_name", with: "Brendan"
+  fill_in "user_email", with: email
+end
+
 feature "User signs up for a new account" do
   scenario "they sign up with invalid email" do
     visit signup_path
 
-    fill_in "user_name", with: "Brendan"
-    fill_in "user_email", with: "bb@b"
+    login_with_email(email: "b@bb")
     fill_in "user_password", with: "buddybuddy"
     fill_in "user_password_confirmation", with: "buddybuddy"
 
@@ -19,8 +23,7 @@ feature "User signs up for a new account" do
   scenario "they sign up with invalid password" do
     visit signup_path
 
-    fill_in "user_name", with: "Brendan"
-    fill_in "user_email", with: "brendan@skilledup.com"
+    login_with_email
     fill_in "user_password", with: "buddy"
     fill_in "user_password_confirmation", with: "buddy"
 
@@ -34,8 +37,7 @@ feature "User signs up for a new account" do
   scenario "they sign up with unmatched password and password confirmation" do
     visit signup_path
 
-    fill_in "user_name", with: "Brendan"
-    fill_in "user_email", with: "brendan@skilledup.com"
+    login_with_email
     fill_in "user_password", with: "buddybuddy"
     fill_in "user_password_confirmation", with: "buddyskater"
 
@@ -49,8 +51,7 @@ feature "User signs up for a new account" do
   scenario "they sign up with unmatched password and password confirmation and visit homepage" do
     visit signup_path
 
-    fill_in "user_name", with: "Brendan"
-    fill_in "user_email", with: "brendan@skilledup.com"
+    login_with_email
     fill_in "user_password", with: "buddybuddy"
     fill_in "user_password_confirmation", with: "buddyskater"
 
