@@ -1,5 +1,4 @@
 require "spec_helper"
-require "capybara/rspec"
 
 feature "User signs up for a new account" do
   scenario "they sign up with invalid information" do
